@@ -21,7 +21,7 @@ import pandas
 import soundfile as sf
 from scipy import signal as sig
 
-from audiodsp.core import simulation as sim
+from acoustdsp.core import simulation as sim
 from libs.helpers import calc_azimuth, calc_azimuth_sinc
 
 
