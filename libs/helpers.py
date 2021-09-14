@@ -1,7 +1,7 @@
 import itertools
 import numpy as np
 
-from acoustdsp.core import localization as loc
+from acoustdsp import localization as loc
 from libs.interpolation import cc_sinc_interp
 
 
