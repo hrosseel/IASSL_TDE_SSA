@@ -1,4 +1,19 @@
-# %% Import libraries
+# Copyright (C) 2021 Hannes Rosseel
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+
 from os import path
 
 import numpy as np
@@ -7,7 +22,7 @@ import soundfile as sf
 from scipy import signal as sig
 
 from audiodsp.core import simulation as sim
-from libs.helpers import calculate_azimuth, calculate_azimuth_sinc
+from libs.helpers import calc_azimuth, calc_azimuth_sinc
 
 
 def simulate_sampling_freq(basepath, mic_array_pos, angles, c):
@@ -26,7 +41,7 @@ def simulate_sampling_freq(basepath, mic_array_pos, angles, c):
     for a in angles:
         irs, fs = sf.read(path.join(basepath,
                                     f"ir_100cm_{str(abs(a))}deg.wav"))
-        reference_doa = calculate_azimuth(irs, mic_array_pos, fs, c)
+        reference_doa = calc_azimuth(irs, mic_array_pos, fs, c)
         print(f"Angle: {str(reference_doa)} degrees.")
         for i, dec in enumerate(decimations):
             fs_dec = int(fs / dec)
@@ -36,13 +51,13 @@ def simulate_sampling_freq(basepath, mic_array_pos, angles, c):
             else:
                 rirs = irs
 
-            azi_no_int = calculate_azimuth(rirs, mic_array_pos, fs_dec, c)
-            azi_parabolic = calculate_azimuth(rirs, mic_array_pos, fs_dec, c,
-                                              "parabolic")
-            azi_gaussian = calculate_azimuth(rirs, mic_array_pos, fs_dec, c,
-                                             "gaussian")
-            azi_sinc = calculate_azimuth_sinc(rirs, mic_array_pos, fs_dec, c,
-                                              100, 0.05)
+            azi_no_int = calc_azimuth(rirs, mic_array_pos, fs_dec, c)
+            azi_parabolic = calc_azimuth(rirs, mic_array_pos, fs_dec, c,
+                                         "parabolic")
+            azi_gaussian = calc_azimuth(rirs, mic_array_pos, fs_dec, c,
+                                        "gaussian")
+            azi_sinc = calc_azimuth_sinc(rirs, mic_array_pos, fs_dec, c, 100,
+                                         0.05)
 
             doa_err = abs(([azi_no_int, azi_parabolic, azi_gaussian, azi_sinc]
                            - reference_doa))
@@ -69,22 +84,20 @@ def simulate_interpolation(basepath, mic_array_pos, angles, c):
     for a in angles:
         irs, fs = sf.read(path.join(basepath,
                                     f"ir_170cm_{str(abs(a))}deg.wav"))
-        reference_doa = calculate_azimuth(irs, mic_array_pos, fs, c)
+        reference_doa = calc_azimuth(irs, mic_array_pos, fs, c)
 
         fs_dec = int(fs / DEC)
         rirs = sig.decimate(irs, DEC, axis=0)
 
-        azi_no_int = calculate_azimuth(rirs, mic_array_pos, fs_dec, c)
-        azi_parabolic = calculate_azimuth(rirs, mic_array_pos, fs_dec, c,
-                                          "parabolic")
-        azi_gaussian = calculate_azimuth(rirs, mic_array_pos, fs_dec, c,
-                                         "gaussian")
+        azi_no_int = calc_azimuth(rirs, mic_array_pos, fs_dec, c)
+        azi_parabolic = calc_azimuth(rirs, mic_array_pos, fs_dec, c,
+                                     "parabolic")
+        azi_gaussian = calc_azimuth(rirs, mic_array_pos, fs_dec, c, "gaussian")
 
         for i, interp_factor in enumerate(interp_factors):
             print(f"        Interpolation factor: {interp_factor}")
-            azi_sinc = calculate_azimuth_sinc(rirs, mic_array_pos, fs_dec, c,
-                                              interp_factor, 0.05)
-
+            azi_sinc = calc_azimuth_sinc(rirs, mic_array_pos, fs_dec, c,
+                                         interp_factor, 0.05)
             doa_err = abs(([azi_no_int, azi_parabolic, azi_gaussian, azi_sinc]
                            - reference_doa))
             doa_err = (doa_err + 180) % 360 - 180
