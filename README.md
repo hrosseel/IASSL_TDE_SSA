@@ -11,7 +11,7 @@ The package `acoustdsp` can be found in the following [repository](https://githu
 ## Cite us
 In case you find this code helpful, please cite the paper once it's published in IEEE Xplore.
 
-    Rosseel H., van Waterschoot T., "Improved Acoustic Source Localization by Time Delay Estimation with Subsample Accuracy", presented at I3DA 2021, Bologna, Italy, 2021.
+    Rosseel H, van Waterschoot T. “Improved acoustic source localization by time delay estimation with subsample accuracy”. International conference on immersive and 3D audio, Bologna, Italy (online), 08 Sep 2021 - 10 Sep 2021. Proceedings of I3DA 2021. IEEE (Conference Proceeding)
 
 ## License
     Copyright (C) 2021 Hannes Rosseel
