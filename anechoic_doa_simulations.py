@@ -169,7 +169,7 @@ def simulate_snr(mic_array_pos, angles, c):
     snr_factors = np.arange(10, 125, 5)
     total_doa_err = np.zeros((4, snr_factors.shape[0]))
 
-    print("Starting third experiment: varying interpolation factor.")
+    print("Starting fourth experiment: varying SNR factor.")
     for i, SNR in enumerate(snr_factors):
         print(f"    SNR Level: {SNR} dB")
         for j, position in enumerate(loudspeaker_pos):
