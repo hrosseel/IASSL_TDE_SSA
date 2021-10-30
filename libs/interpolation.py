@@ -37,7 +37,7 @@ def cc_sinc_interp(R: np.ndarray, tau: float, interp_mul: int, fs: int,
                          " positive integer.")
 
     R = np.atleast_2d(R)
-    max_ind = np.argmax(np.abs(R), axis=0)
+    max_ind = np.argmax(R, axis=0)
 
     fs_res = fs * interp_mul
     max_ind_res = max_ind * interp_mul
