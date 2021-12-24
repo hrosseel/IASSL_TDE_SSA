@@ -8,11 +8,25 @@ Discrete-time signal processing algorithms for Time Delay Estimation (TDE) gener
 In order to run this code, you need to install the packages specified in [requirements.txt](requirements.txt).
 
 The package `acoustdsp` can be found in the following [repository](https://github.com/hrosseel/acoustDSP).
+
 ## Cite us
-In case you find this code helpful, please cite the paper once it's published in IEEE Xplore.
+In case you find this code helpful, please cite the following paper:
+- Plain text:
 
-    Rosseel H, van Waterschoot T. “Improved acoustic source localization by time delay estimation with subsample accuracy”. International conference on immersive and 3D audio, Bologna, Italy (online), 08 Sep 2021 - 10 Sep 2021. Proceedings of I3DA 2021. IEEE (Conference Proceeding)
+      H. Rosseel and T. v. Waterschoot, "Improved Acoustic Source Localization by Time Delay Estimation with Subsample Accuracy," 2021 Immersive and 3D Audio: from Architecture to Automotive (I3DA), 2021, pp. 1-8, doi: 10.1109/I3DA48870.2021.9610902.
 
+- Bibtex:
+
+        @INPROCEEDINGS{9610902,
+        author={Rosseel, Hannes and Waterschoot, Toon van},
+        booktitle={2021 Immersive and 3D Audio: from Architecture to Automotive (I3DA)},
+        title={Improved Acoustic Source Localization by Time Delay Estimation with Subsample Accuracy},
+        year={2021},
+        volume={},
+        number={},
+        pages={1-8},
+        doi={10.1109/I3DA48870.2021.9610902}}
+    
 ## License
     Copyright (C) 2021 Hannes Rosseel
 
