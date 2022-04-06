@@ -45,7 +45,7 @@ def simulate_sampling_freq(mic_array_pos, angles, c, SNR):
         print(f"    Sampling rate: {fs} Hz")
         for j, position in enumerate(loudspeaker_pos):
             delay = calc_delay(mic_array_pos, position)
-            rirs = sim.simulate_direct_sound(delay, fs, 20, 10, c).T
+            rirs = sim.simulate_direct_sound(delay, fs, 20, 10, c)
             noise = rng.standard_normal(rirs.shape) / (10**(SNR / 20))
             rirs += noise
 
@@ -87,7 +87,7 @@ def simulate_distances(mic_array_pos, angles, c, SNR):
 
         for j, position in enumerate(loudspeaker_pos):
             delay = calc_delay(mic_array_pos, position)
-            rirs = sim.simulate_direct_sound(delay, FS, 20, 10, c).T
+            rirs = sim.simulate_direct_sound(delay, FS, 20, 10, c)
             rirs += rng.standard_normal(rirs.shape) / (10**(SNR / 20))
 
             azi_no_int = calc_azimuth(rirs, mic_array_pos, FS, c)
@@ -128,7 +128,7 @@ def simulate_interpolation(mic_array_pos, angles, c, SNR):
     for j, position in enumerate(loudspeaker_pos):
         print(f"    Loudspeaker position: {j}")
         delay = calc_delay(mic_array_pos, position)
-        rirs = sim.simulate_direct_sound(delay, FS, 20, 10, c).T
+        rirs = sim.simulate_direct_sound(delay, FS, 20, 10, c)
         rirs += rng.standard_normal(rirs.shape) / (10**(SNR / 20))
 
         azi_no_int = calc_azimuth(rirs, mic_array_pos, FS, c)
@@ -174,7 +174,7 @@ def simulate_snr(mic_array_pos, angles, c):
         print(f"    SNR Level: {SNR} dB")
         for j, position in enumerate(loudspeaker_pos):
             delay = calc_delay(mic_array_pos, position)
-            rirs = sim.simulate_direct_sound(delay, FS, 20, 10, c).T
+            rirs = sim.simulate_direct_sound(delay, FS, 20, 10, c)
             noise = rng.standard_normal(rirs.shape) / (10**(SNR / 20))
             rirs += noise
 
