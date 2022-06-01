@@ -17,7 +17,7 @@
 import numpy as np
 import pandas
 
-from acoustdsp import simulation as sim
+import libs.simulation as sim
 from libs.helpers import calc_azimuth, calc_azimuth_sinc, calc_delay
 
 

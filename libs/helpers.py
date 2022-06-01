@@ -1,8 +1,7 @@
 import itertools
 import numpy as np
 
-from acoustdsp import localization as loc
-from libs.interpolation import cc_sinc_interp
+import libs.localization as loc
 
 
 def calc_delay(mic_array_pos, loudspeaker_pos):
@@ -30,7 +29,7 @@ def calc_azimuth_sinc(rirs, mic_array, fs, c, interp_factor, margin):
     max_idices = np.argmax(r[tdoa_region, :], axis=0)
     tau_hat = (max_idices - max_td) / fs
 
-    tau = cc_sinc_interp(r, tau_hat, interp_factor, fs, margin)
+    tau = loc.cc_sinc_interp(r, tau_hat, interp_factor, fs, margin)
 
     impr_doa = loc.calculate_doa(tau, V)
     return np.arctan2(impr_doa[1], impr_doa[0]) * 180 / np.pi

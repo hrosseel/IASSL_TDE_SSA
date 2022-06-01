@@ -7,8 +7,6 @@ Discrete-time signal processing algorithms for Time Delay Estimation (TDE) gener
 ## Requirements
 In order to run this code, you need to install the packages specified in [requirements.txt](requirements.txt).
 
-The package `acoustdsp` can be found in the following [repository](https://github.com/hrosseel/acoustDSP).
-
 ## Cite us
 In case you find this code helpful, please cite the following paper:
 - Plain text:
